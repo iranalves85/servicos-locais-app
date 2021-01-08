@@ -1,0 +1,61 @@
+<template>
+  <header class="login-header">
+
+    <div class="logged row justify-content-around q-ma-md">
+      <span class="col">Bemvindo, <strong >{{ username }}</strong></span>
+      <q-btn float-right class="text-right" :outline="true" size="sm" color="teal" icon="close" label="Sair" @click="sair" />
+    </div>
+
+    <user-component ref="user" v-on:authorized="sessaoAutenticada" v-on:unauthorized="sair"></user-component> 
+    
+  </header>
+</template>
+
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+import { LocalStorage, Quasar, SessionStorage } from 'quasar';
+import UserComponent from "components/ClassUser.vue";
+
+@Component({
+  components: { UserComponent }
+})
+export default class ClassLogin extends Vue {
+
+  username:string
+  logado:boolean
+
+  beforeMount() { 
+    
+  }
+
+  sessaoAutenticada() {
+
+   // Adicionar nome de usuário
+    this.username = this.$refs.user.user.name;
+    
+   // Define como logado
+    this.logado = true
+
+   // Emite evento
+    this.$emit('authorized', true); 
+  }
+
+  sair() {
+    LocalStorage.remove('api_token')
+    this.$emit('logged_out', true)
+    let current = this.$router.currentRoute
+    if (current.path != '/login') {
+      this.$router.push('/login')
+    }
+    
+  }
+
+  protected setAxiosHeaders (token) {
+    this.$axios.defaults.headers.common['Content-Type'] = 'application/json'
+    this.$axios.defaults.headers.common['Access-Control-Allow-Origin'] = ''
+    this.$axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    this.$axios.defaults.withCredentials = false
+  }
+
+}
+</script>
