@@ -35,11 +35,12 @@
               <q-select
                 filled
                 label="Recursos"
-                hint="Separate multiple values by [,;|]"
+                hint="Adicione um item pressionando 'Enter'"
                 v-model="resourcesSelected"
                 use-input
                 use-chips
                 multiple
+                behavior="dialog"
                 input-debounce="0"
                 @new-value="createValue"
                 :options="filterOptions"
@@ -89,7 +90,7 @@ export default class PageAddRequest extends MainRequest {
   filterOptions:string[] = stringOptions
 
   // campos selecionados
-  unitySelected = { ID: '' }
+  unitySelected = { ID: '', name: '' }
   goalSelected = { name: '' }
   resourcesSelected:unknown[] = []
 

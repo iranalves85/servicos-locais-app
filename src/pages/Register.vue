@@ -54,9 +54,6 @@ import { /* Notify, Loading, Quasar, */ LocalStorage } from 'quasar'
   components: { }
 })
 export default class PageRegister extends Vue {
-  apiUrl =
-    'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public/api';
-
   options:unknown = [{ label: 'Empresa', value: 1 }, { label: 'Fornecedor', value: 2 }]
   type = {
     label: 'Empresa',
@@ -95,7 +92,7 @@ export default class PageRegister extends Vue {
 
     // Executa requisição
     // eslint-disable-next-line no-void
-    void this.$axios.post(this.apiUrl + '/register', data).then((response:{status:number, data:{success: {login:string, token:string, username:string}, error: {register:string}}}) => {
+    void this.$axios.post(String(process.env.API) + '/register', data).then((response:{status:number, data:{success: {login:string, token:string, username:string}, error: {register:string}}}) => {
       // Se resposta foi ok
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (response.status === 200 && typeof response.data === 'object') {

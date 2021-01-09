@@ -7,16 +7,13 @@ import { Vue, Component } from 'vue-property-decorator'
 
 @Component
 export default class ClassPlace extends Vue {
-  apiUrl =
-    'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public'
-
   unidades:unknown[] = []
   empresas:unknown[] = []
 
   // carregar lista de unidades para selects
   carregarUnidades () {
     // eslint-disable-next-line no-void
-    void this.$axios.get(this.apiUrl + '/unity').then((response:{status:number, data:[{ID:string, name:string}]}) => {
+    void this.$axios.get(String(process.env.API) + '/unity').then((response:{status:number, data:[{ID:string, name:string}]}) => {
       // Retorna se requisição for diferente
       if (response.status !== 200) return
 
@@ -32,7 +29,7 @@ export default class ClassPlace extends Vue {
   // carregar lista de empresas
   carregarEmpresas () {
     // eslint-disable-next-line no-void
-    void this.$axios.get(this.apiUrl + '/business').then((response:{status:number, data:unknown[]}) => {
+    void this.$axios.get(String(process.env.API) + '/business').then((response:{status:number, data:unknown[]}) => {
       // Retorna se requisição for diferente
       if (response.status !== 200) return
 

@@ -130,17 +130,15 @@ export default class PageLogin extends Vue {
   }
 
   protected setAxiosHeaders () {
-    const apiUrl =
-      'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public/api'
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common['Content-Type'] = 'application/json'
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common[
       'Access-Control-Allow-Origin'
-    ] = apiUrl
+    ] = '*'
     this.$axios.defaults.withCredentials = false
-    this.$axios.defaults.baseURL = apiUrl
+    this.$axios.defaults.baseURL = process.env.API
   }
 }
 </script>

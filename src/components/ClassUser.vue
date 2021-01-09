@@ -96,17 +96,14 @@ export default class ClassUser extends Vue {
   }
 
   protected setAxiosHeaders (token: string) {
-    const apiUrl =
-    'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public/api'
-
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common['Content-Type'] = 'application/json'
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.$axios.defaults.headers.common['Access-Control-Allow-Origin'] = apiUrl
+    this.$axios.defaults.headers.common['Access-Control-Allow-Origin'] = process.env.API
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common.Authorization = 'Bearer ' + token
     this.$axios.defaults.withCredentials = false
-    this.$axios.defaults.baseURL = apiUrl
+    this.$axios.defaults.baseURL = process.env.API
   }
 }
 </script>

@@ -62,7 +62,7 @@ import MainUnity from '../class/MainUnity.vue'
   components: { QDialog, ClosePopup }
 })
 export default class ClassHelp extends Vue {
-  @Prop({ type: [Array, Object], required: true }) tag = { 0: 0, 1: '' }
+  @Prop() tag!:(string|number)[]
   paged = 1
   items = []
   ajuda = {
@@ -76,7 +76,7 @@ export default class ClassHelp extends Vue {
   confirm = false
 
   unity:MainUnity = new MainUnity()
-  unitySelected = { ID: '' }
+  unitySelected = { ID: '', name: '' }
 
   $refs!: {
     dialog: HTMLFormElement
@@ -146,8 +146,8 @@ export default class ClassHelp extends Vue {
   // Define configuração de botão ajuda
   setarAjuda () {
     // Atribuir item de contexto
-    this.ajuda.recurso_id = this.tag[0]
-    this.ajuda.titulo = this.tag[1]
+    this.ajuda.recurso_id = Number(this.tag[0])
+    this.ajuda.titulo = String(this.tag[1])
 
     // Exibir
     this.confirm = true

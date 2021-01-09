@@ -8,7 +8,7 @@
       <h1 class="text-h6">Adicionar Unidade</h1>
       <q-form @submit="aoSubmeter()" class="q-gutter-md">
         <div>
-          <q-input v-model="name" type="text" label="Nome" />
+          <q-input v-model="name" type="text" label="Nome Estabelecimento" />
           <q-input v-model="zipcode" type="number" label="CEP" mask="#####-###" :unmasked-value="true" @keyup="carregarCEP()" />
           <q-input v-model="address" type="text" label="Rua/Avenida" :disable="true" />
 

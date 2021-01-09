@@ -3,9 +3,7 @@
 
     <div class="q-mb-lg q-mt-lg row justify-content-around">
       <span class="col text-h5 text-weight-bold">{{ title }}</span>
-      <q-btn-group class="text-right">
-        <address-component v-on:filtro="filtrarSolicitacao"></address-component>
-      </q-btn-group>
+      <address-component class="text-right" v-on:filtro="filtrarSolicitacao"></address-component>
     </div>
 
     <q-infinite-scroll @load="onLoad" :offset="250" :initial-index="0">
@@ -193,8 +191,11 @@ export default class ClassRequest extends MainRequest {
     this.filtro = selected
     this.items = []
     this.desabilitarRequest = false
+    this.showSkeleton = true
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const emptyfn = () => {}
+    const emptyfn = () => {
+      this.showSkeleton = true
+    }
     this.onLoad(0, emptyfn)
   }
 

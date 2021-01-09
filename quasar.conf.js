@@ -53,6 +53,10 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
+      env: {
+        API: (ctx.dev) ? 'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public/api' : 'https://api.divulgue-servicos.makingpie.com.br/api'
+      },
+
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -205,10 +209,6 @@ module.exports = configure(function (ctx) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       }
-    },
-
-    bin: {
-      linuxAndroidStudio: '/mnt/g/Apps/android-studio/bin/studio.sh'
     }
 
   }
