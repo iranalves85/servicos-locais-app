@@ -14,7 +14,8 @@
         active-color="teal"
         class="bg-grey-2"
       >
-        <q-route-tab name="home" icon="store" label="Solicitações" to='/home' class="text-caption text-capitalize" />
+        <q-route-tab name="home" icon="reorder" label="Geral" to='/home' class="text-caption text-capitalize" />
+        <q-route-tab name="my-request" icon="speaker_notes" label="Solicitadas" to='/home/request' class="text-caption text-capitalize" />
         <q-route-tab name="unity" icon="store" label="Unidades" to='/unity' class="text-caption text-capitalize" />
       </q-tabs>
     </q-page-sticky>

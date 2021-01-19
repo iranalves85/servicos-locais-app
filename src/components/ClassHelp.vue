@@ -28,8 +28,8 @@
               filled
             />
 
-            <q-input v-model="ajuda.email" type="email" label="Email" />
-            <q-input v-model="ajuda.telefone" type="tel" label="Telefone" />
+            <q-input v-model="ajuda.email" type="email" hint="Opcional" label="Email" />
+            <q-input v-model="ajuda.telefone" type="tel" maxlength="11" prefix="+55" hint="Apenas números, ex.: 11987654321" label="Telefone" />
 
             <div align="right">
               <q-btn flat label="Cancelar" color="teal" v-close-popup />
@@ -87,6 +87,25 @@ export default class ClassHelp extends Vue {
     this.$q.loading.show({
       delay: 400 // ms
     })
+
+    if (this.unitySelected.ID === '' || this.unitySelected.name === '') {
+      // Fechar carregamento/loading
+      this.$q.loading.hide()
+      return this.$q.notify({
+        message: 'Selecione uma unidade para registrar seu contato.',
+        color: 'red'
+      })
+    }
+
+    const telValidation = RegExp(/^\(?[0-9]{2}\)?[0-9]{9}$/i)
+    if (this.ajuda.telefone.length === 0 || telValidation.exec(this.ajuda.telefone) === null) {
+      // Fechar carregamento/loading
+      this.$q.loading.hide()
+      return this.$q.notify({
+        message: 'Número de telefone celular incorreto. Requer 11 digitos.',
+        color: 'red'
+      })
+    }
 
     // Atribuindo id da unidade selecionada
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

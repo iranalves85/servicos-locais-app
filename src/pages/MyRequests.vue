@@ -8,7 +8,7 @@
 
         <div class="col-12 q-pa-lg">
 
-          <request-component ref="request" title="Geral"></request-component>
+          <request-user-component ref="request" title="Minhas Solicitações"></request-user-component>
 
           <q-page-sticky position="bottom-right" :offset="[18,100]" expand>
             <q-fab v-if="mostrarBotaoSolicitacao" label="Nova Solicitação" color="teal-5" icon="add" direction="up" label-position="left" vertical-actions-align="right">
@@ -27,16 +27,33 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import RequestComponent from 'components/ClassRequest.vue'
+import RequestUserComponent from 'components/ClassUserRequest.vue'
 import PlaceComponent from 'components/ClassPlace.vue'
 import UserComponent from 'components/ClassUser.vue'
 import { QFab, QFabAction } from 'quasar'
+import { Plugins } from '@capacitor/core'
+import { AdOptions, AdSize, AdPosition } from '@capacitor-community/admob'
+const { AdMob } = Plugins
 
 @Component({
-  components: { RequestComponent, PlaceComponent, UserComponent, QFab, QFabAction }
+  components: { RequestUserComponent, PlaceComponent, UserComponent, QFab, QFabAction }
 })
 export default class PageIndex extends Vue {
   mostrarBotaoSolicitacao = false
+
+  beforeMount () {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    AdMob.initialize()
+    const options: AdOptions = {
+      adId: 'ca-app-pub-1612419668358448~5776256468',
+      adSize: AdSize.BANNER,
+      position: AdPosition.BOTTOM_CENTER,
+      margin: 0
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    AdMob.showBanner(options)
+  }
 
   sessaoAutenticada () {
     // mostrar botão

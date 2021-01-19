@@ -4,4 +4,5 @@
     <string name="title_activity_main">com.makingpie.local-services</string>
     <string name="package_name">org.capacitor.quasar.app</string>
     <string name="custom_url_scheme">org.capacitor.quasar.app</string>
+    <string name="admob_app_id">ca-app-pub-1612419668358448~5776256468</string>
 </resources>

@@ -35,12 +35,14 @@
               <q-select
                 filled
                 label="Recursos"
-                hint="Adicione um item pressionando 'Enter'"
+                hint="Adicione itens separado por qualquer destes caracteres ',;|'"
                 v-model="resourcesSelected"
                 use-input
                 use-chips
                 multiple
-                behavior="dialog"
+                new-value-mode="add-unique"
+                menu-anchor="center middle"
+                behavior="menu"
                 input-debounce="0"
                 @new-value="createValue"
                 :options="filterOptions"

@@ -3,7 +3,6 @@
 
     <div class="q-mb-lg q-mt-lg row justify-content-around">
       <span class="col text-h5 text-weight-bold">{{ title }}</span>
-      <address-component class="text-right" v-on:filtro="filtrarSolicitacao"></address-component>
     </div>
 
     <q-infinite-scroll @load="onLoad" :offset="250" :initial-index="0">
@@ -163,94 +162,57 @@
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator'
 import { QChip } from 'quasar'
-import MainRequest from '../class/MainRequest.vue'
+import ClassRequest from 'components/ClassRequest.vue'
 import HelpComponent from 'components/ClassHelp.vue'
-import AddressComponent from 'components/ClassAddress.vue'
-import moment from 'moment'
 
 @Component({
-  components: { QChip, HelpComponent, AddressComponent }
+  components: { QChip, HelpComponent }
 })
-export default class ClassRequest extends MainRequest {
+export default class ClassUserRequest extends ClassRequest {
   @Prop({ type: String, required: true }) readonly title!: string;
-
   showSkeleton = true
+  desabilitarRequest = false
 
-  beforeMount () {
-    this.$on('request_finished', () => {
-      this.showSkeleton = false
-    })
+  // carregar as últimas solicitações cadastradas
+  carregarSolicitacao (index: number|undefined, done: () => void) {
+    // Se novas requisições está desabilitado
+    if (index === undefined || this.desabilitarRequest === true) return done()// Encerrar carregando do infinite-scroll
+
+    // Atribuindo paginação
+    this.paged = index
+
+    // Realiza requisição
+    // eslint-disable-next-line no-void
+    void this.$axios
+      .get('/request/user/' + index.toString())
+      .then((response:{status:number, data:unknown[]}) => {
+        // Retorna se requisição for diferente
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (response.status !== 200) {
+          done()// Encerrar carregando do infinite-scroll
+        }
+
+        // Atribui items ao array
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (response.data.length > 0) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          const data = response.data
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          data.forEach((element: unknown) => {
+            return this.items.push(element) // items
+            // items
+          })
+          done()// Encerrar carregando do infinite-scroll
+        } else {
+          this.desabilitarRequest = true
+          done()// Encerrar carregando do infinite-scroll
+        }
+
+        // Emite evento quando finalizado
+        this.$emit('request_finished', true)
+      })
   }
 
-  onLoad (index:number, done: () => void) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    this.carregarSolicitacao(index, done)
-  }
-
-  filtrarSolicitacao (selected:string) {
-    this.filtro = selected
-    this.items = []
-    this.desabilitarRequest = false
-    this.showSkeleton = true
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const emptyfn = () => {
-      this.showSkeleton = true
-    }
-    this.onLoad(0, emptyfn)
-  }
-
-  cor (type:string, num = 4) {
-    let cor = 'primary'
-
-    switch (type) {
-      case 'Serviço':
-        cor = 'orange'
-        break
-      case 'Produto':
-        cor = 'red'
-        break
-      case 'Projeto':
-        cor = 'purple'
-        break
-      default:
-        break
-    }
-
-    return cor + '-' + num.toString()
-  }
-
-  abrirMapa (item:{address:string, number:string, neighborhood:string, city:string, state:string}) {
-    const url = 'https://www.google.com/maps?q=' +
-            item.address +
-            ',' +
-            item.number +
-            ',' +
-            item.neighborhood +
-            ',' +
-            item.city +
-            ',' +
-            item.state
-
-    this.abrirLink(url)
-  }
-
-  abrirEmail (item:string) {
-    const url = 'mailto:' + item
-    this.abrirLink(url)
-  }
-
-  abrirWhatsapp (item:string) {
-    const url = 'https://wa.me/55' + item
-    this.abrirLink(url)
-  }
-
-  private abrirLink (url:string) {
-    window.open(url, 'blank')
-  }
-
-  // Exibição de data
-  momentFrom ($date: string) {
-    return moment($date).locale('pt-br').fromNow()
-  }
 }
 </script>
