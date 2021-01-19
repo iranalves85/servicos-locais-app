@@ -172,6 +172,7 @@ export default class ClassUserRequest extends ClassRequest {
   @Prop({ type: String, required: true }) readonly title!: string;
   showSkeleton = true
   desabilitarRequest = false
+  items: unknown[] = []
 
   // carregar as últimas solicitações cadastradas
   carregarSolicitacao (index: number|undefined, done: () => void) {
@@ -213,6 +214,5 @@ export default class ClassUserRequest extends ClassRequest {
         this.$emit('request_finished', true)
       })
   }
-
 }
 </script>
