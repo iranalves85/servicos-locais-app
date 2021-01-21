@@ -18,8 +18,10 @@
     "core-js": "^3.6.5",
     "quasar": "^1.0.0",
     "vue-class-component": "^7.2.2",
+    "vue-google-adsense": "^1.9.1",
     "vue-i18n": "^8.0.0",
-    "vue-property-decorator": "^8.3.0"
+    "vue-property-decorator": "^8.3.0",
+    "vue-script2": "^2.1.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",

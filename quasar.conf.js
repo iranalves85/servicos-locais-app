@@ -54,7 +54,11 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       env: {
-        API: (ctx.dev) ? 'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public/api' : 'https://api.divulgue-servicos.makingpie.com.br/api'
+        API: (ctx.dev) ? 'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public/api' : 'https://api.divulgue-servicos.makingpie.com.br/api',
+        ADSENSE_ID: 'ca-pub-1612419668358448',
+        WEB_BANNER_AD: '',
+        ADMOB_ID: 'ca-app-pub-1612419668358448~5776256468',
+        ADMOB_BANNER_AD: 'ca-app-pub-1612419668358448/9385049166'
       },
 
       // transpile: false,

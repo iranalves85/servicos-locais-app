@@ -8,6 +8,7 @@
     <div class="col-12 q-pa-lg">
       <div class="row">
         <div class="col-12">
+
           <h1 class="text-h6">Adicionar {{ pageTitle }}</h1>
           <q-form @submit="aoSubmeter" class="q-gutter-md">
             <div>
@@ -56,6 +57,9 @@
             </div>
           </q-form>
           <q-space />
+
+          <banner-ad-component></banner-ad-component>
+          
         </div>
       </div>
       <!-- row -->
@@ -69,11 +73,12 @@ import { Component } from 'vue-property-decorator'
 import MainUnity from '../class/MainUnity.vue'
 import MainRequest from '../class/MainRequest.vue'
 import UserComponent from 'components/ClassUser.vue'
+import BannerAdComponent from 'components/BannerAd.vue'
 
 const stringOptions:string[] = []
 
 @Component({
-  components: { UserComponent }
+  components: { UserComponent, BannerAdComponent }
 })
 export default class PageAddRequest extends MainRequest {
   // Tipo de requisição => 1 = Serviço, 2 => Produto, 3 => Projeto

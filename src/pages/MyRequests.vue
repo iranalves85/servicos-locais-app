@@ -12,9 +12,9 @@
 
           <q-page-sticky position="bottom-right" :offset="[18,100]" expand>
             <q-fab v-if="mostrarBotaoSolicitacao" label="Nova Solicitação" color="teal-5" icon="add" direction="up" label-position="left" vertical-actions-align="right">
-                <q-fab-action color="amber" label="Serviço" text-color="black" @click="$router.push('add/service')" icon="plumbing" />
-                <q-fab-action color="amber" label="Produto" text-color="black" @click="$router.push('add/product')" icon="storefront" />
-                <q-fab-action color="amber" label="Projeto" text-color="black" @click="$router.push('add/project')" icon="supervised_user_circle" />
+                <q-fab-action color="amber" label="Serviço" text-color="black" @click="$router.push('/add/service')" icon="plumbing" />
+                <q-fab-action color="amber" label="Produto" text-color="black" @click="$router.push('/add/product')" icon="storefront" />
+                <q-fab-action color="amber" label="Projeto" text-color="black" @click="$router.push('/add/project')" icon="supervised_user_circle" />
             </q-fab>
           </q-page-sticky>
 
@@ -31,29 +31,12 @@ import RequestUserComponent from 'components/ClassUserRequest.vue'
 import PlaceComponent from 'components/ClassPlace.vue'
 import UserComponent from 'components/ClassUser.vue'
 import { QFab, QFabAction } from 'quasar'
-import { Plugins } from '@capacitor/core'
-import { AdSize, AdPosition } from '@capacitor-community/admob'
-const { AdMob } = Plugins
 
 @Component({
   components: { RequestUserComponent, PlaceComponent, UserComponent, QFab, QFabAction }
 })
 export default class PageIndex extends Vue {
   mostrarBotaoSolicitacao = false
-
-  beforeMount () {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    AdMob.initialize()
-    const options = {
-      adId: 'ca-app-pub-1612419668358448/9385049166',
-      adSize: AdSize.BANNER,
-      position: AdPosition.BOTTOM_CENTER,
-      margin: 0
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    AdMob.showBanner(options)
-  }
 
   sessaoAutenticada () {
     // mostrar botão
