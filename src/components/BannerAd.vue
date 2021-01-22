@@ -2,7 +2,7 @@
     <Adsense
         v-if="isBrowser"
         :data-ad-client="adsenseID"
-        data-ad-slot="6228456682">
+        :data-ad-slot="adsenseBanner">
     </Adsense>
 </template>
 <script lang="ts">
@@ -18,14 +18,13 @@ Vue.use(Ads.Adsense)
 @Component
 export default class BannerAd extends Vue {
     isBrowser = false
-    adsenseID:string|undefined
+    adsenseID = process.env.ADSENSE_ID
+    adsenseBanner = process.env.WEB_BANNER_ID
 
     beforeMount () {
       if (!process.platform) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        AdMob.initialize()
         const options = {
-          adId: process.env.ADMOB_BANNER_AD,
+          adId: process.env.ADMOB_BANNER_ID,
           adSize: AdSize.BANNER,
           position: AdPosition.BOTTOM_CENTER,
           margin: 0
@@ -34,7 +33,6 @@ export default class BannerAd extends Vue {
         AdMob.showBanner(options)
       } else {
         this.isBrowser = true
-        this.adsenseID = process.env.ADSENSE_ID
       }
     }
 }
