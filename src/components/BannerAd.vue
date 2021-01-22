@@ -23,6 +23,8 @@ export default class BannerAd extends Vue {
 
     beforeMount () {
       if (!process.platform) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        AdMob.initialize()
         const options = {
           adId: process.env.ADMOB_BANNER_ID,
           adSize: AdSize.BANNER,
