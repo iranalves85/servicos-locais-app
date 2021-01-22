@@ -22,7 +22,7 @@ export default class BannerAd extends Vue {
     adsenseBanner = process.env.WEB_BANNER_ID
 
     beforeMount () {
-      if (!process.platform) {
+      if (this.$q.platform.is.capacitor) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         AdMob.initialize()
         const options = {
