@@ -59,7 +59,6 @@
           <q-space />
 
           <banner-ad-component></banner-ad-component>
-          
         </div>
       </div>
       <!-- row -->
