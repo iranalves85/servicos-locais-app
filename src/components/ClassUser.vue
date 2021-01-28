@@ -1,6 +1,6 @@
 <template>
   <header class="authorized-header">
-    <admob-banner-component v-if="!$q.platform.is.capacitor"></admob-banner-component>
+    <admob-banner-component v-if="$q.platform.is.capacitor"></admob-banner-component>
     <q-toolbar class="bg-teal text-white">
       <q-img
         src="~assets/servicos-locais.png"

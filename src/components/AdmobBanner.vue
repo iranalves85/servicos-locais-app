@@ -9,16 +9,17 @@ const { AdMob } = Plugins
 
 @Component
 export default class AdmobBanner extends Vue {
-    beforeMount () {
-      AdMob.initialize()
-      const options = {
-        adId: process.env.ADMOB_BANNER_ID,
-        adSize: AdSize.BANNER,
-        position: AdPosition.TOP_CENTER,
-        margin: 0
-      }
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      AdMob.showBanner(options)
+  beforeMount () {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    AdMob.initialize()
+    const options = {
+      adId: process.env.ADMOB_BANNER_ID,
+      adSize: AdSize.BANNER,
+      position: AdPosition.TOP_CENTER,
+      margin: 0
     }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    AdMob.showBanner(options)
+  }
 }
 </script>

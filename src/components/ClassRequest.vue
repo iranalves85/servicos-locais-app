@@ -43,11 +43,11 @@
         Nenhum resultado
       </p>
 
-      <template 
+      <template
         v-if="items && items.length > 0"
         v-for="(item, post_index) in items">
 
-        <q-card :id="'post-' + item.ID" class="my-card q-mb-md" :key="post_index">       
+        <q-card :id="'post-' + item.ID" class="my-card q-mb-md" :key="post_index">
 
         <q-card-section class="">
 
@@ -151,8 +151,8 @@
 
       </q-card>
 
-      <adsense-in-feed-component v-if="showInFeedBanner(post_index)"></adsense-in-feed-component>
-        
+      <adsense-in-feed-component v-bind:key="post_index" v-if="showInFeedBanner(post_index)"></adsense-in-feed-component>
+
       </template>
 
       <template v-slot:loading>
@@ -174,7 +174,7 @@ import HelpComponent from 'components/ClassHelp.vue'
 import AddressComponent from 'components/ClassAddress.vue'
 import AdsenseHorizontalComponent from 'components/AdsenseBannerH.vue'
 import AdsenseInFeedComponent from 'components/AdsenseInFeed.vue'
-import moment from 'moment' 
+import moment from 'moment'
 
 @Component({
   components: { QChip, HelpComponent, AddressComponent, AdsenseHorizontalComponent, AdsenseInFeedComponent }
@@ -263,7 +263,7 @@ export default class ClassRequest extends MainRequest {
 
   showInFeedBanner ($index:number) {
     if (this.$q.platform.is.capacitor) return false
-    return ($index%2)? false : true
+    return !(($index % 2))
   }
 }
 </script>
