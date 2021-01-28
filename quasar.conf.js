@@ -56,7 +56,9 @@ module.exports = configure(function (ctx) {
       env: {
         API: (ctx.dev) ? 'http://localhost/desenvolvimento/servicos-locais/backend-api/app/public/api' : 'https://api.divulgue-servicos.makingpie.com.br/api',
         ADSENSE_ID: 'ca-pub-1612419668358448',
-        WEB_BANNER_ID: '6228456682',
+        WEB_BANNER_ID: '6228456682', // Quadrado
+        WEB_BANNERH_ID: '3963580958', // Horizontal
+        WEB_INFEED_ID: '4874156180', // In-feed
         ADMOB_ID: 'ca-app-pub-1612419668358448~5776256468',
         ADMOB_BANNER_ID: 'ca-app-pub-1612419668358448/9385049166'
       },

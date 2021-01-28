@@ -1,6 +1,8 @@
 <template>
   <div class="request-component">
 
+    <adsense-horizontal-component v-if="!$q.platform.is.capacitor"></adsense-horizontal-component>
+
     <div class="q-mb-lg q-mt-lg row justify-content-around">
       <span class="col text-h5 text-weight-bold">{{ title }}</span>
       <address-component class="text-right" v-on:filtro="filtrarSolicitacao"></address-component>
@@ -41,13 +43,12 @@
         Nenhum resultado
       </p>
 
-      <q-card
-        :id="'post-' + item.ID"
+      <template 
         v-if="items && items.length > 0"
-        v-for="(item, post_index) in items"
-        :key="post_index"
-        class="my-card q-mb-md"
-      >
+        v-for="(item, post_index) in items">
+
+        <q-card :id="'post-' + item.ID" class="my-card q-mb-md" :key="post_index">       
+
         <q-card-section class="">
 
           <div class="row q-mb-md">
@@ -55,7 +56,11 @@
             <span class="q-ml-md text-caption text-grey-6">Postado {{ momentFrom(item.updated_at) }}</span>
           </div>
 
-          <div class="text-h6 text-grey-9">{{ item.name }}</div>
+          <div class="title">
+            <div class="text-h6 text-teal-5 q-mb-xs">{{item.goal}}</div>
+            <span class="text-subtitle2 text-grey-9">{{ item.name }}</span>
+          </div>
+
           <address>
             <p class="text-body2 q-mb-none text-grey-7">
               <!-- {{ item.address }}, {{ item.number }}<br /> -->
@@ -67,9 +72,6 @@
         <q-separator />
         <q-card-section>
             <div class="col-12 resources-section">
-
-              <div class="text-subtitle2 text-teal-5 q-mb-xs">{{item.goal}}</div>
-
               <template v-if="item.items">
                 <div
                   class="col mb-3"
@@ -149,6 +151,10 @@
 
       </q-card>
 
+      <adsense-in-feed-component v-if="showInFeedBanner(post_index)"></adsense-in-feed-component>
+        
+      </template>
+
       <template v-slot:loading>
         <div class="row justify-center q-my-md">
           <q-spinner-dots color="primary" size="40px" />
@@ -166,10 +172,12 @@ import { QChip } from 'quasar'
 import MainRequest from '../class/MainRequest.vue'
 import HelpComponent from 'components/ClassHelp.vue'
 import AddressComponent from 'components/ClassAddress.vue'
-import moment from 'moment'
+import AdsenseHorizontalComponent from 'components/AdsenseBannerH.vue'
+import AdsenseInFeedComponent from 'components/AdsenseInFeed.vue'
+import moment from 'moment' 
 
 @Component({
-  components: { QChip, HelpComponent, AddressComponent }
+  components: { QChip, HelpComponent, AddressComponent, AdsenseHorizontalComponent, AdsenseInFeedComponent }
 })
 export default class ClassRequest extends MainRequest {
   @Prop({ type: String, required: true }) readonly title!: string;
@@ -251,6 +259,11 @@ export default class ClassRequest extends MainRequest {
   // Exibição de data
   momentFrom ($date: string) {
     return moment($date).locale('pt-br').fromNow()
+  }
+
+  showInFeedBanner ($index:number) {
+    if (this.$q.platform.is.capacitor) return false
+    return ($index%2)? false : true
   }
 }
 </script>

@@ -57,7 +57,7 @@
             </div>
           </q-form>
           <q-space />
-          <banner-ad-component></banner-ad-component>
+          <banner-ad-component v-if="!$q.platform.is.capacitor"></banner-ad-component>
         </div>
       </div>
       <!-- row -->
@@ -67,11 +67,10 @@
 
 <script lang="ts">
 import { Component } from 'vue-property-decorator'
-// import { Quasar } from 'quasar'
 import MainUnity from '../class/MainUnity.vue'
 import MainRequest from '../class/MainRequest.vue'
 import UserComponent from 'components/ClassUser.vue'
-import BannerAdComponent from 'components/BannerAd.vue'
+import BannerAdComponent from 'components/AdsenseBannerQ.vue'
 
 const stringOptions:string[] = []
 

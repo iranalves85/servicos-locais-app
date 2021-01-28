@@ -1,6 +1,6 @@
 <template>
   <header class="authorized-header">
-
+    <admob-banner-component v-if="!$q.platform.is.capacitor"></admob-banner-component>
     <q-toolbar class="bg-teal text-white">
       <q-img
         src="~assets/servicos-locais.png"
@@ -19,9 +19,10 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { LocalStorage /* , Quasar, SessionStorage */ } from 'quasar'
+import AdmobBannerComponent from 'components/AdmobBanner.vue'
 
 @Component({
-  components: {}
+  components: { AdmobBannerComponent }
 })
 export default class ClassUser extends Vue {
   username:string|null = ''
