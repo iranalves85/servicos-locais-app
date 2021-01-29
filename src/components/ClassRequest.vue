@@ -1,8 +1,6 @@
 <template>
   <div class="request-component">
 
-    <adsense-horizontal-component v-if="!$q.platform.is.capacitor"></adsense-horizontal-component>
-
     <div class="q-mb-lg q-mt-lg row justify-content-around">
       <span class="col text-h5 text-weight-bold">{{ title }}</span>
       <address-component class="text-right" v-on:filtro="filtrarSolicitacao"></address-component>
@@ -172,12 +170,11 @@ import { QChip } from 'quasar'
 import MainRequest from '../class/MainRequest.vue'
 import HelpComponent from 'components/ClassHelp.vue'
 import AddressComponent from 'components/ClassAddress.vue'
-import AdsenseHorizontalComponent from 'components/AdsenseBannerH.vue'
 import AdsenseInFeedComponent from 'components/AdsenseInFeed.vue'
 import moment from 'moment'
 
 @Component({
-  components: { QChip, HelpComponent, AddressComponent, AdsenseHorizontalComponent, AdsenseInFeedComponent }
+  components: { QChip, HelpComponent, AddressComponent, AdsenseInFeedComponent }
 })
 export default class ClassRequest extends MainRequest {
   @Prop({ type: String, required: true }) readonly title!: string;

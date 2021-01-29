@@ -8,6 +8,8 @@
 
         <div class="col-12 q-pa-lg">
 
+          <adsense-horizontal-component v-if="!$q.platform.is.capacitor"></adsense-horizontal-component>
+
           <request-component ref="request" title="Geral"></request-component>
 
           <q-page-sticky position="bottom-right" :offset="[18,100]" expand>
@@ -31,9 +33,10 @@ import RequestComponent from 'components/ClassRequest.vue'
 import PlaceComponent from 'components/ClassPlace.vue'
 import UserComponent from 'components/ClassUser.vue'
 import { QFab, QFabAction } from 'quasar'
+import AdsenseHorizontalComponent from 'components/AdsenseBannerH.vue'
 
 @Component({
-  components: { RequestComponent, PlaceComponent, UserComponent, QFab, QFabAction }
+  components: { RequestComponent, PlaceComponent, UserComponent, QFab, QFabAction, AdsenseHorizontalComponent }
 })
 export default class PageIndex extends Vue {
   mostrarBotaoSolicitacao = false

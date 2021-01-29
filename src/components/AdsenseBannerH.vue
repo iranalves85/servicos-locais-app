@@ -2,9 +2,9 @@
     <Adsense
         :data-ad-client="adsenseID"
         :data-ad-slot="adsenseBanner"
-        data-ad-test="on"
+        data-ad-test="yes"
         data_adtest="on"
-        data-ad-format="auto"
+        data-ad-format="horizontal"
         data-full-width-responsive="yes">
     </Adsense>
 </template>

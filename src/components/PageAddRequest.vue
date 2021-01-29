@@ -9,8 +9,10 @@
       <div class="row">
         <div class="col-12">
 
+          <adsense-horizontal-component v-if="!$q.platform.is.capacitor"></adsense-horizontal-component>
+
           <h1 class="text-h6">Adicionar {{ pageTitle }}</h1>
-          <q-form @submit="aoSubmeter" class="q-gutter-md">
+          <q-form class="q-gutter-md">
             <div>
               <q-select
                 v-model="unitySelected"
@@ -38,8 +40,8 @@
                 label="Recursos"
                 hint="Adicione itens separado por qualquer destes caracteres ',;|'"
                 v-model="resourcesSelected"
-                use-input
-                use-chips
+                :use-input="true"
+                :use-chips="true"
                 multiple
                 new-value-mode="add-unique"
                 menu-anchor="center middle"
@@ -51,13 +53,12 @@
               />
 
               <div class="row justify-content-around q-mt-md">
-                <q-btn label="Enviar" type="submit" color="teal" class="full-width" />
+                <q-btn label="Enviar" type="button" color="teal" class="full-width" @click="aoSubmeter" />
               </div>
 
             </div>
           </q-form>
           <q-space />
-          <banner-ad-component v-if="!$q.platform.is.capacitor"></banner-ad-component>
         </div>
       </div>
       <!-- row -->
@@ -70,12 +71,12 @@ import { Component } from 'vue-property-decorator'
 import MainUnity from '../class/MainUnity.vue'
 import MainRequest from '../class/MainRequest.vue'
 import UserComponent from 'components/ClassUser.vue'
-import BannerAdComponent from 'components/AdsenseBannerQ.vue'
+import AdsenseHorizontalComponent from 'components/AdsenseBannerH.vue'
 
 const stringOptions:string[] = []
 
 @Component({
-  components: { UserComponent, BannerAdComponent }
+  components: { UserComponent, AdsenseHorizontalComponent }
 })
 export default class PageAddRequest extends MainRequest {
   // Tipo de requisição => 1 = Serviço, 2 => Produto, 3 => Projeto

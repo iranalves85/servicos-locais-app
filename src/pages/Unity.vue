@@ -8,6 +8,8 @@
 
         <div class="col-12 q-pa-lg">
 
+          <adsense-horizontal-component v-if="!$q.platform.is.capacitor"></adsense-horizontal-component>
+
           <unity-request-component title="Minhas Unidades"></unity-request-component>
 
           <q-page-sticky v-if="mostrarBotaoUnidade" position="bottom-right" :offset="[18,100]" expand>
@@ -26,9 +28,10 @@
 import { Vue, Component } from 'vue-property-decorator'
 import UserComponent from 'components/ClassUser.vue'
 import UnityRequestComponent from 'components/ClassUnity.vue'
+import AdsenseHorizontalComponent from 'components/AdsenseBannerH.vue'
 
 @Component({
-  components: { UserComponent, UnityRequestComponent }
+  components: { UserComponent, UnityRequestComponent, AdsenseHorizontalComponent }
 })
 export default class Unity extends Vue {
   mostrarBotaoUnidade = false
