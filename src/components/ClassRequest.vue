@@ -149,7 +149,7 @@
 
       </q-card>
 
-      <adsense-in-feed-component v-bind:key="post_index" v-if="showInFeedBanner(post_index)"></adsense-in-feed-component>
+      <adsense-in-feed-component :key="keyInFeedBanner(post_index)" v-if="showInFeedBanner(post_index)"></adsense-in-feed-component>
 
       </template>
 
@@ -261,6 +261,11 @@ export default class ClassRequest extends MainRequest {
   showInFeedBanner ($index:number) {
     if (this.$q.platform.is.capacitor) return false
     return !(($index % 2))
+  }
+
+  keyInFeedBanner ($index:number) {
+    const $id = $index * 1000
+    return ($id === 0) ? -1 : $id
   }
 }
 </script>

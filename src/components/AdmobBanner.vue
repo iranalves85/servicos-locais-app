@@ -10,6 +10,8 @@ const { AdMob } = Plugins
 @Component
 export default class AdmobBanner extends Vue {
   beforeMount () {
+    if (this.$route.path === '/') return // Não exibir na splashscreen
+
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     AdMob.initialize()
     const options = {

@@ -48,7 +48,7 @@
             <q-icon name="attach_money" size="56px" />
             <div class="q-mt-md q-mb-lg text-center text-h6 text-grey">
               <h3 class="text-h3 q-ma-none q-mb-md">Comece agora mesmo!</h3>
-              Realize contatos e feche grandes negócios sem pagar nada!
+              Realize contatos e feche negócios sem pagar nada!
             </div>
             <q-btn class="full-width q-mb-md" color="teal" icon="login" label="Fazer Login" @click="$router.push('login')" />
 

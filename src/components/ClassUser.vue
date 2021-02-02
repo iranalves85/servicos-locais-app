@@ -31,6 +31,8 @@ export default class ClassUser extends Vue {
 
   beforeMount () {
     this.carregarToken()
+    if (this.authorizeStatus) return
+    this.verificarAuth()
   }
 
   // Carregar token quando inicializar
@@ -39,7 +41,10 @@ export default class ClassUser extends Vue {
     // eslint-disable-next-line no-void
     void this.$axios.get('/authorized').then((response:{status:number, data:{success:{user:{name:string}}}}) => {
       // Retorna se requisição for diferente
-      if (response.status !== 200) return false
+      if (response.status !== 200) {
+        console.log(response)
+        return false
+      }
 
       // Se resposta for false
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -67,7 +72,6 @@ export default class ClassUser extends Vue {
 
     if (token) {
       // Atribuindo dados armazenados a var
-      this.verificarAuth()
       this.username = LocalStorage.getItem('username')
 
       // Setando headers
@@ -100,7 +104,7 @@ export default class ClassUser extends Vue {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common['Content-Type'] = 'application/json'
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.$axios.defaults.headers.common['Access-Control-Allow-Origin'] = process.env.API
+    this.$axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*' // process.env.API
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common.Authorization = 'Bearer ' + token
     this.$axios.defaults.withCredentials = false
