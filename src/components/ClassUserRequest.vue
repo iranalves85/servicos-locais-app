@@ -51,6 +51,9 @@ export default class ClassUserRequest extends ClassRequest {
 
         // Emite evento quando finalizado
         this.$emit('request_finished', true)
+      }, () => {
+        // Emite evento quando finalizado
+        this.$emit('request_finished', true)
       })
   }
 }
