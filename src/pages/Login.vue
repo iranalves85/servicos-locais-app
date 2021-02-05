@@ -1,11 +1,11 @@
 <template>
-  <q-page class="bg-teal-1 row items-top justify-evenly">
+  <q-page class="bg-white row items-top justify-evenly">
 
     <user-component ref="user" v-show="false" v-on:authorized="sessaoAutenticada"></user-component>
 
     <div v-if="!authorized" class="col-12 q-pa-none">
 
-      <div class="bg-teal text-white text-center q-pa-lg">
+      <div class="bg-teal text-white text-center q-pa-md">
         <q-img
           src="~assets/servicos-locais.png"
           _srcset="~assets/servicos-locais.png 200w"
@@ -24,8 +24,8 @@
           <div class="login-form q-mt-lg">
             <h3 class="text-subtitle1 q-mb-lg">Entre com seus dados</h3>
             <q-form @submit="aoSubmeter" class="q-gutter-md">
-              <q-input filled class="bg-white" v-model="email" type="email" label="Email" />
-              <q-input filled class="bg-white" v-model="password" type="password" label="Senha" />
+              <q-input outlined bg-color="white" color="teal" label-color="teal" v-model="email" type="email" label="Email" />
+              <q-input outlined bg-color="white" color="teal" label-color="teal" v-model="password" type="password" label="Senha" />
               <div class="text-right">
                 <br />
                 <q-btn
@@ -40,7 +40,7 @@
             <div class="q-mt-lg text-center">
               <p>
                 Registrar uma
-                <q-btn color="black" :outline="true" size="sm" label="Nova Conta"  @click="$router.push('/register')" />
+                <q-btn color="black" :outline="true" size="sm" label="Nova Conta"  to='/register' />
               </p>
             </div>
           </div>

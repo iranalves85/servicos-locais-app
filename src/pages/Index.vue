@@ -13,10 +13,10 @@
           <request-component ref="request" title="Geral"></request-component>
 
           <q-page-sticky class="main-action" position="bottom-right" :offset="[18,100]" expand>
-            <q-fab v-if="mostrarBotaoSolicitacao" label="Nova Solicitação" color="teal-5" icon="add" direction="up" label-position="left" vertical-actions-align="right">
-                <q-fab-action color="white" label="Serviço" text-color="black" @click="$router.push('add/service')" icon="plumbing" />
-                <q-fab-action color="white" label="Produto" text-color="black" @click="$router.push('add/product')" icon="storefront" />
-                <q-fab-action color="white" label="Projeto" text-color="black" @click="$router.push('add/project')" icon="supervised_user_circle" />
+            <q-fab v-if="mostrarBotaoSolicitacao" label="Novo Pedido" color="teal-5" icon="add" direction="up" label-position="left" vertical-actions-align="right">
+                <q-fab-action color="white" label="Serviço" text-color="black" to='add/service' icon="plumbing" />
+                <q-fab-action color="white" label="Produto" text-color="black" to='add/product' icon="storefront" />
+                <q-fab-action color="white" label="Projeto" text-color="black" to='add/project' icon="supervised_user_circle" />
             </q-fab>
           </q-page-sticky>
 

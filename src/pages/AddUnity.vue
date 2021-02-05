@@ -8,27 +8,27 @@
       <h1 class="text-h6">Adicionar Unidade</h1>
       <q-form @submit="aoSubmeter()" class="q-gutter-md">
         <div>
-          <q-input v-model="name" type="text" label="Nome Estabelecimento" />
-          <q-input v-model="zipcode" type="number" label="CEP" mask="#####-###" :unmasked-value="true" @keyup="carregarCEP()" />
-          <q-input v-model="address" type="text" label="Rua/Avenida" :disable="true" />
+          <q-input class="q-mb-xs" outlined bg-color="white" color="teal" label-color="teal" v-model="name" type="text" label="Nome Estabelecimento" />
+          <q-input class="q-mb-xs" outlined bg-color="white" color="teal" label-color="teal" v-model="zipcode" type="number" label="CEP" mask="#####-###" :unmasked-value="true" @keyup="carregarCEP()" />
+          <q-input class="q-mb-xs" outlined bg-color="white" color="teal" label-color="teal" v-model="address" type="text" label="Rua/Avenida" :disable="true" />
 
           <div class="row justify-content-around q-mt-xs q-mb-xs">
-            <div class="col-4">
-              <q-input v-model="number" type="number" label="Número" />
+            <div class="col-5">
+              <q-input outlined bg-color="white" color="teal" label-color="teal" v-model="number" type="number" label="Número" />
             </div>
             <div class="col-7">
-              <q-input v-model="complement" type="text" label="Complemento" class="q-ml-md" />
+              <q-input outlined bg-color="white" color="teal" label-color="teal" v-model="complement" type="text" label="Complemento" class="q-ml-xs" />
             </div>
           </div>
 
-          <q-input v-model="neighborhood" type="text" label="Bairro" :disable="true" />
-          <q-input v-model="city" type="text" label="Cidade" :disable="true" />
+          <q-input class="q-mb-xs" outlined bg-color="white" color="teal" label-color="teal" v-model="neighborhood" type="text" label="Bairro" :disable="true" />
+          <q-input class="q-mb-xs" outlined bg-color="white" color="teal" label-color="teal" v-model="city" type="text" label="Cidade" :disable="true" />
           <q-select
             v-model="state"
             :options="options"
             label="Estado"
-            class="q-mt-md"
-            filled
+            class="q-mb-xs"
+            outlined bg-color="white" color="teal" label-color="teal"
           />
 
           <div class="row justify-content-around q-mt-md">

@@ -79,7 +79,8 @@
                   <q-chip
                     v-for="(tag, subindex) in i"
                     :key="subindex"
-                    :color="tag[2] ? 'orange' : 'white' "
+                    :color="tag[2] ? 'orange' : 'grey-3' "
+                    :bg-color="tag[2] ? 'orange' : 'white' "
                     :text-color="tag[2] ? 'white' : 'black' "
                     :label="tag[1]"
                   >
@@ -158,7 +159,7 @@
 
       </template>
 
-      <template v-slot:loading>
+      <template v-if="!desabilitarRequest" v-slot:loading>
         <div class="row justify-center q-my-md">
           <q-spinner-dots color="primary" size="40px" />
         </div>

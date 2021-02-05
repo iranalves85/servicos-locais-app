@@ -53,6 +53,8 @@ export default class ClassUserRequest extends ClassRequest {
         this.$emit('request_finished', true)
       }, () => {
         // Emite evento quando finalizado
+        this.desabilitarRequest = true
+        done()
         this.$emit('request_finished', true)
       })
   }

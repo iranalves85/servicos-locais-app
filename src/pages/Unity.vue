@@ -13,7 +13,7 @@
           <unity-request-component title="Minhas Unidades"></unity-request-component>
 
           <q-page-sticky class="main-action" v-if="mostrarBotaoUnidade" position="bottom-right" :offset="[18,100]" expand>
-            <q-fab color="teal-5" label="Nova Unidade" icon="add" direction="up" label-position="left" vertical-actions-align="right" @click="$router.push('add/unity')">
+            <q-fab color="teal-5" label="Nova Unidade" icon="add" direction="up" label-position="left" vertical-actions-align="right" to='add/unity'>
             </q-fab>
           </q-page-sticky>
 

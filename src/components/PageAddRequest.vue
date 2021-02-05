@@ -22,7 +22,7 @@
                 option-value="ID"
                 label="Unidade"
                 class="q-mb-md"
-                filled
+                outlined bg-color="white" color="teal" label-color="teal"
               />
 
               <q-select
@@ -32,11 +32,11 @@
                 option-value="value"
                 label="Eu quero:"
                 class="q-mb-md"
-                filled
+                outlined bg-color="white" color="teal" label-color="teal"
               />
 
               <q-select
-                filled
+                outlined bg-color="white" color="teal" label-color="teal"
                 label="Recursos"
                 hint="Adicione itens separado por qualquer destes caracteres ',;|'"
                 v-model="resourcesSelected"

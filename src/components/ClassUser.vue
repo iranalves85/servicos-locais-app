@@ -15,7 +15,7 @@
         <q-btn class="text-right" :outline="true" size="md" color="white" icon="close" label="Sair" @click="sair" />
       </template>
       <q-toolbar-title v-else>
-        <q-btn :outline="true" size="md" color="white" label="Fazer Login" @click="sair(); $router.push('/login')" />
+        <q-btn :outline="true" size="md" color="white" label="Fazer Login" to="/login" />
       </q-toolbar-title>
     </q-toolbar>
 

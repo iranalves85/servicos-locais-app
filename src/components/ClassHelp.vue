@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-btn unelevated color="green" :dense="true" size="xs" icon="account_circle" padding="3px 5px 3px 2px" label="Contatar" @click="setarAjuda" class="q-ml-md" />
+    <q-btn unelevated color="green" :dense="true" size="8px" icon="account_circle" padding="3px 5px 1px 2px" label="Contatar" @click="setarAjuda" class="q-ml-md" />
     <q-dialog ref="dialog" v-model="confirm" persistent>
       <q-card>
         <q-card-section class="row items-center">
@@ -42,7 +42,11 @@
             <h4 class="text-subtitle1 q-mb-xs text-grey-9">Essa ação não pode ser realizada!</h4>
             <p class="text-caption text-grey-7">Você ainda não cadastrou nenhuma unidade e não pode contatar este usuário!</p>
             <div align="center">
-              <q-btn flat label="Adicionar Unidade" color="teal" @click="$router.push('/add/unity')" v-close-popup />
+              <q-btn v-if="user.authorizeStatus" flat label="Adicionar Unidade" color="teal" to="/add/unity" v-close-popup />
+              <template v-else>
+                <q-btn  flat label="Fazer Login" color="teal" to="/login" />
+                <q-btn class="q-ml-xs" label="Registrar" color="teal" to="/register" />
+              </template>
             </div>
           </template>
 
@@ -54,9 +58,9 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { /* Notify, Loading, Quasar, */ QDialog, ClosePopup } from 'quasar'
-// import UnityComponent from 'components/ClassUnity.vue'
+import { QDialog, ClosePopup } from 'quasar'
 import MainUnity from '../class/MainUnity.vue'
+import ClassUser from 'components/ClassUser.vue'
 
 @Component({
   components: { QDialog, ClosePopup }
@@ -76,6 +80,7 @@ export default class ClassHelp extends Vue {
   confirm = false
 
   unity:MainUnity = new MainUnity()
+  user:ClassUser = new ClassUser()
   unitySelected = { ID: '', name: '' }
 
   $refs!: {

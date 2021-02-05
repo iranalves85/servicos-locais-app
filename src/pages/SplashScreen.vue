@@ -49,8 +49,8 @@
             <div class="q-mt-md q-mb-lg text-center text-h6 text-grey">
               <h3 class="text-h5 q-ma-none q-mb-md">Comece agora mesmo!</h3>
               <p>Realize contatos e feche negócios sem pagar nada!</p>
-              <q-btn class="full-width q-mb-md" color="orange" icon="login" label="Fazer Login" @click="$router.push('login')" />
-              <q-btn class="full-width" color="teal" icon="reorder" label="Pedidos Abertos" @click="$router.push('/home')" />
+              <q-btn class="full-width q-mb-md" color="orange" icon="login" label="Fazer Login" to='/login' />
+              <q-btn class="full-width" color="teal" icon="reorder" label="Pedidos Abertos" to='/home' />
             </div>
           </q-carousel-slide>
         </q-carousel>

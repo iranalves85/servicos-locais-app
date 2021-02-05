@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-teal-1 row items-top justify-evenly">
+  <q-page class="bg-white row items-top justify-evenly">
 
     <q-header reveal elevated bordered class="bg-teal">
       <q-btn color="white" flat icon="arrow_back" label="Voltar" @click="$router.back()" />
@@ -17,10 +17,10 @@
 
             <div class="text-right">
               <!--<q-select filled class="q-mb-xs" v-model="type" :options="options" label="Tipo de Usuário" />-->
-              <q-input filled class="q-mb-xs bg-white" v-model="name" type="text" label="Nome da Empresa" />
-              <q-input filled class="q-mb-xs bg-white" v-model="email" type="email" label="Email" />
-              <q-input filled class="q-mb-xs bg-white" v-model="password" type="password" label="Senha" />
-              <q-input filled class="q-mb-xs bg-white" v-model="confirmPassword" type="password" label="Confirmar Senha" />
+              <q-input outlined bg-color="white" color="teal" label-color="teal" class="q-mb-xs" v-model="name" type="text" label="Nome da Empresa" />
+              <q-input outlined bg-color="white" color="teal" label-color="teal" class="q-mb-xs" v-model="email" type="email" label="Email" />
+              <q-input outlined bg-color="white" color="teal" label-color="teal" class="q-mb-xs" v-model="password" type="password" label="Senha" />
+              <q-input outlined bg-color="white" color="teal" label-color="teal" class="q-mb-xs" v-model="confirmPassword" type="password" label="Confirmar Senha" />
             </div>
             <div class="q-mt-md">
               <q-scroll-area style="height: 250px;">
