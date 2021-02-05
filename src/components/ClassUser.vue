@@ -8,10 +8,15 @@
         sizes="(max-width: 320px) 30px, (max-width: 480px) 30px"
         width="30px"
       />
-      <q-toolbar-title v-if="username">
-        {{ username }}
+      <template v-if="username !== null">
+        <q-toolbar-title>
+          {{ username }}
+        </q-toolbar-title>
+        <q-btn class="text-right" :outline="true" size="md" color="white" icon="close" label="Sair" @click="sair" />
+      </template>
+      <q-toolbar-title v-else>
+        <q-btn :outline="true" size="md" color="white" label="Fazer Login" @click="sair(); $router.push('/login')" />
       </q-toolbar-title>
-      <q-btn class="text-right" :outline="true" size="sm" color="white" icon="close" label="Sair" @click="sair" />
     </q-toolbar>
 
   </header>
@@ -25,18 +30,16 @@ import AdmobBannerComponent from 'components/AdmobBanner.vue'
   components: { AdmobBannerComponent }
 })
 export default class ClassUser extends Vue {
-  username:string|null = ''
-  private user:unknown
+  username:string|null = null
   public authorizeStatus = false// Deslogado
 
   beforeMount () {
-    this.carregarToken()
-    if (this.authorizeStatus) return
     this.verificarAuth()
   }
 
   // Carregar token quando inicializar
   private verificarAuth () {
+    if (!this.carregarToken()) return
     // Realiza requiisição
     // eslint-disable-next-line no-void
     void this.$axios.get('/authorized').then((response:{status:number, data:{success:{user:{name:string}}}}) => {
@@ -50,8 +53,6 @@ export default class ClassUser extends Vue {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (response.data.success !== undefined) {
         // Atribuindo dados de resposta
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        this.user = response.data.success.user
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         this.username = response.data.success.user.name
 
@@ -68,23 +69,26 @@ export default class ClassUser extends Vue {
 
   private carregarToken () {
     // Carregar token registrado localmente
-    const token = LocalStorage.getItem('api_token')
+    const token = LocalStorage.getItem('remember_token')
 
-    if (token) {
+    if (token !== null) {
       // Atribuindo dados armazenados a var
       this.username = LocalStorage.getItem('username')
 
       // Setando headers
       this.setAxiosHeaders(token.toString())
+      return true // token carregado
     } else {
-      this.sair()
+      return false // token inexistente
     }
   }
 
-  private sair () {
+  sair () {
     // Remove dados armazenados
-    LocalStorage.remove('api_token')
+    LocalStorage.remove('remember_token')
     LocalStorage.remove('username')
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    this.$axios.defaults.headers.common.Authorization = ''
 
     // Emite evento
     this.$emit('logged_out', true)
@@ -102,13 +106,7 @@ export default class ClassUser extends Vue {
 
   protected setAxiosHeaders (token: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.$axios.defaults.headers.common['Content-Type'] = 'application/json'
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.$axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*' // process.env.API
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common.Authorization = 'Bearer ' + token
-    this.$axios.defaults.withCredentials = false
-    this.$axios.defaults.baseURL = process.env.API
   }
 }
 </script>

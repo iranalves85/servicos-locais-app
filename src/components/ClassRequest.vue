@@ -79,26 +79,31 @@
                   <q-chip
                     v-for="(tag, subindex) in i"
                     :key="subindex"
-                    :color="tag[2] ? 'success' : '' "
+                    :color="tag[2] ? 'orange' : 'white' "
+                    :text-color="tag[2] ? 'white' : 'black' "
+                    :label="tag[1]"
                   >
-                    {{ tag[1] }}
-
                     <template v-if="tag[2]">
                       <div
                         v-for="(support, supportindex) in tag[2]"
                         :key="supportindex"
                         size="sm"
-                        variant="light"
+                        color="light"
                         class="mr-1"
                       >
 
                         <q-btn
-                          rounded
-                          label="Já Contatado!"
-                          color="orange"
-                          size="sm"
-                          class="q-ml-md"
                           v-if="support != undefined"
+                          class="q-ml-sm"
+                          unelevated
+                          :dense="true"
+                          :label="support.unity"
+                          v-bind="support"
+                          color="orange-5"
+                          text-color="white"
+                          icon="contact_phone"
+                          size="8px"
+                          padding="2px 5px"
                           :target="`popover-${index}-${subindex}-${supportindex}`"
                           :placement="
                             'index-' + index + '-' + subindex + '-' + supportindex
@@ -124,13 +129,13 @@
               </template>
 
               <div v-if="item.can_edit != undefined && item.can_edit == true">
-                <button
+                <q-btn
                   size="sm"
-                  variant="outline-danger"
+                  color="red"
                   class="ml-3 float-right"
                 >
                   Deletar
-                </button>
+                </q-btn>
               </div>
               <!-- Botões de ações -->
             </div>

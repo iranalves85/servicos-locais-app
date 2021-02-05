@@ -5,7 +5,7 @@
       <router-view />
     </q-page-container>
 
-    <q-page-sticky position="bottom" :offset="[0,0]" expand>
+    <q-page-sticky class="main-menu-footer" position="bottom" :offset="[0,0]" expand>
       <q-tabs
         :breakpoint="0"
         :stretch="true"

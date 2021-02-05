@@ -32,7 +32,7 @@
                   icon="login"
                   label="Entrar"
                   type="submit"
-                  color="teal"
+                  color="orange"
                   class="full-width"
                 />
               </div>
@@ -40,7 +40,7 @@
             <div class="q-mt-lg text-center">
               <p>
                 Registrar uma
-                <a href="#" @click="$router.push('/register')">nova conta</a>
+                <q-btn color="black" :outline="true" size="sm" label="Nova Conta"  @click="$router.push('/register')" />
               </p>
             </div>
           </div>
@@ -64,11 +64,6 @@ export default class PageLogin extends Vue {
   email = '';
   password = '';
   authorized = false
-
-  beforeMount () {
-    // Define headers
-    this.setAxiosHeaders()
-  }
 
   sessaoAutenticada () {
     // Verifica status de usuário
@@ -110,7 +105,7 @@ export default class PageLogin extends Vue {
           })
 
           // Armazenar token
-          LocalStorage.set('api_token', response.data.success.token)
+          LocalStorage.set('remember_token', response.data.success.token)
           LocalStorage.set('username', response.data.success.username)
 
           // Redirecionar para home
@@ -127,18 +122,6 @@ export default class PageLogin extends Vue {
 
     // Fechar carregamento/loading
     this.$q.loading.hide()
-  }
-
-  protected setAxiosHeaders () {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.$axios.defaults.headers.common['Content-Type'] = 'application/json'
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.$axios.defaults.headers.common[
-      'Access-Control-Allow-Origin'
-    ] = '*'
-    this.$axios.defaults.withCredentials = false
-    this.$axios.defaults.baseURL = process.env.API
   }
 }
 </script>

@@ -12,7 +12,7 @@
 
           <request-user-component ref="request" title="Minhas Solicitações"></request-user-component>
 
-          <q-page-sticky position="bottom-right" :offset="[18,100]" expand>
+          <q-page-sticky class="main-action" position="bottom-right" :offset="[18,100]" expand>
             <q-fab v-if="mostrarBotaoSolicitacao" label="Nova Solicitação" color="teal-5" icon="add" direction="up" label-position="left" vertical-actions-align="right">
                 <q-fab-action color="amber" label="Serviço" text-color="black" @click="$router.push('/add/service')" icon="plumbing" />
                 <q-fab-action color="amber" label="Produto" text-color="black" @click="$router.push('/add/product')" icon="storefront" />

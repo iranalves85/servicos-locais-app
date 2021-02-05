@@ -53,7 +53,7 @@
               />
 
               <div class="row justify-content-around q-mt-md">
-                <q-btn label="Enviar" type="button" color="teal" class="full-width" @click="aoSubmeter" />
+                <q-btn label="Enviar" type="button" color="orange" class="full-width" @click="aoSubmeter" />
               </div>
 
             </div>

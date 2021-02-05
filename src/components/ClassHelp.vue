@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-btn rounded color="purple" size="sm" label="Contate" @click="setarAjuda" class="q-ml-md" />
+    <q-btn unelevated color="green" :dense="true" size="xs" icon="account_circle" padding="3px 5px 3px 2px" label="Contatar" @click="setarAjuda" class="q-ml-md" />
     <q-dialog ref="dialog" v-model="confirm" persistent>
       <q-card>
         <q-card-section class="row items-center">

@@ -47,13 +47,11 @@
           <q-carousel-slide name="login" class="column no-wrap flex-center">
             <q-icon name="attach_money" size="56px" />
             <div class="q-mt-md q-mb-lg text-center text-h6 text-grey">
-              <h3 class="text-h3 q-ma-none q-mb-md">Comece agora mesmo!</h3>
-              Realize contatos e feche negócios sem pagar nada!
+              <h3 class="text-h5 q-ma-none q-mb-md">Comece agora mesmo!</h3>
+              <p>Realize contatos e feche negócios sem pagar nada!</p>
+              <q-btn class="full-width q-mb-md" color="orange" icon="login" label="Fazer Login" @click="$router.push('login')" />
+              <q-btn class="full-width" color="teal" icon="reorder" label="Pedidos Abertos" @click="$router.push('/home')" />
             </div>
-            <q-btn class="full-width q-mb-md" color="teal" icon="login" label="Fazer Login" @click="$router.push('login')" />
-
-            <q-btn class="full-width" color="teal" icon="assignment_ind" label="Criar Acesso" @click="$router.push('register')" />
-
           </q-carousel-slide>
         </q-carousel>
       </div>
@@ -64,7 +62,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { QCarousel, QCarouselControl, QCarouselSlide } from 'quasar'
+import { QCarousel, QCarouselControl, QCarouselSlide, LocalStorage } from 'quasar'
 import UserComponent from 'components/ClassUser.vue'
 
 @Component({
@@ -72,6 +70,17 @@ import UserComponent from 'components/ClassUser.vue'
 })
 export default class PageSplashScreen extends Vue {
   slide = 'style'
+  hideSplashscreen = false
+
+  beforeMount () {
+    if (LocalStorage.getItem('hideSplashscreen') === 'true') {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.$router.push('/home')
+    }
+
+    // Não mostrar splashscreen novamente
+    LocalStorage.set('hideSplashscreen', 'true')
+  }
 
   sessaoAutenticada () {
     // Verifica status de usuário

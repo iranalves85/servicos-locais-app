@@ -18,13 +18,15 @@ export default class MainUnity extends Vue {
       .get('/unity')
       .then((response:{status:number, data:unknown[]}) => {
         // Retorna se requisição for diferente
-        if (response.status !== 200) return
-
-        // Atribui items ao array
-        response.data.forEach((element) => {
-          return this.items.push(element) // items
-        })
-
+        if (response.status === 200) {
+          // Atribui items ao array
+          response.data.forEach((element) => {
+            this.items.push(element) // items
+          })
+        }
+        // Emite evento quando finalizado
+        this.$emit('request_finished', true)
+      }, () => {
         // Emite evento quando finalizado
         this.$emit('request_finished', true)
       })

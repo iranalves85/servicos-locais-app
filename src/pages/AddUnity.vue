@@ -32,7 +32,7 @@
           />
 
           <div class="row justify-content-around q-mt-md">
-            <q-btn label="Enviar" type="submit" color="teal" class="full-width" />
+            <q-btn label="Enviar" type="submit" color="orange" class="full-width" />
           </div>
 
         </div>

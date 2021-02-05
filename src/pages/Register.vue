@@ -24,7 +24,7 @@
             </div>
             <div class="q-mt-md">
               <q-scroll-area style="height: 250px;">
-                <h2 class="text-subtitle1 text-weight-medium">Termos e Condições</h2>
+                <h2 class="text-subtitle1 text-weight-medium"><q-checkbox v-model="accept" label="Termos e Condições" /></h2>
                 <p class="text-body2 text-grey-7 text-justify">
                   Ao submeter seu registro você esta concordando que armazenamos seus dados informados em nossa plataforma, com a principal propósito de utilizar como forma de autenticação. De modo que se posteriormente desejar a remoção de seus dados o mesmo deverá entrar em contato pelo email <a href="mailto:makingpie.mkt@gmail.com">makingpie.mkt@gmail.com</a>, após a remoção destas informações ficará permanentemente impossibilitado de ingressar na plataforma.
                 </p>
@@ -34,7 +34,7 @@
               </q-scroll-area>
             </div>
             <div>
-              <q-btn type="submit" class="full-width" color="teal" icon="login" label="Registrar" />
+              <q-btn type="submit" class="full-width" color="orange" icon="login" label="Registrar" />
             </div>
 
           </q-form>
@@ -64,6 +64,7 @@ export default class PageRegister extends Vue {
   email = ''
   password = ''
   confirmPassword = ''
+  accept = false
 
   onSubmit () {
     // Verifica se campos estão preenchidos
@@ -72,6 +73,15 @@ export default class PageRegister extends Vue {
       // Erro em geral
       return this.$q.notify({
         message: 'Preencha todos os campos solicitados!',
+        color: 'red'
+      })
+    }
+
+    // Verifica se campos estão preenchidos
+    if (this.accept === false) {
+      // Erro em geral
+      return this.$q.notify({
+        message: 'Você continuar é necessário aceitar os "Termos e Condições".',
         color: 'red'
       })
     }
@@ -107,7 +117,7 @@ export default class PageRegister extends Vue {
         })
 
         // Armazenar token
-        LocalStorage.set('api_token', success.token)
+        LocalStorage.set('remember_token', success.token)
         LocalStorage.set('username', success.username)
 
         // Redirecionar para home
