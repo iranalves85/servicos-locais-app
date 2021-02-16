@@ -1,7 +1,5 @@
 <template>
     <InFeedAdsense
-        data-ad-test="on"
-        data_adtest="on"
         data-ad-layout-key="-gw-3+1f-3d+2z"
         data-ad-format="fluid"
         :data-ad-client="adsenseID"

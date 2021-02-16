@@ -16,7 +16,9 @@ export default class App extends Vue {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     this.$axios.defaults.headers.common['Content-Type'] = 'application/json'
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.$axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*' // process.env.API
+    this.$axios.defaults.headers.common.Accept = '*/*' // process.env.API
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    this.$axios.defaults.headers.common['Sec-Fetch-Mode'] = 'cors' // process.env.API
     this.$axios.defaults.withCredentials = false
     this.$axios.defaults.baseURL = process.env.API
   }

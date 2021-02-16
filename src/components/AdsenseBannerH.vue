@@ -2,8 +2,6 @@
     <Adsense
         :data-ad-client="adsenseID"
         :data-ad-slot="adsenseBanner"
-        data-ad-test="yes"
-        data_adtest="on"
         data-ad-format="horizontal"
         data-full-width-responsive="yes">
     </Adsense>
