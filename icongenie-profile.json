@@ -1,0 +1,14 @@
+{
+  "params": {
+    "padding": [
+      0,
+      0
+    ],
+    "include": ["all"],
+    "skipTrim" : true,
+    "icon"  : "/mnt/e/Download/Servicos-Locais/Icon-servicos-locais-SL.png",
+    "themeColor": "FFFFFF",
+    "splashscreenColor" : "FFFFFF"
+  },
+  "assets": []
+}
